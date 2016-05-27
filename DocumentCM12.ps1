@@ -417,6 +417,7 @@ If($MSWord -or $PDF)
 	[int]$wdWord2007 = 12
 	[int]$wdWord2010 = 14
 	[int]$wdWord2013 = 15
+    [int]$wdWord2016 = 16
 	[int]$wdFormatDocumentDefault = 16
 	[int]$wdFormatPDF = 17
 	#http://blogs.technet.com/b/heyscriptingguy/archive/2006/03/01/how-can-i-right-align-a-single-column-in-a-word-table.aspx
@@ -633,7 +634,14 @@ Function ValidateCoverPage
 	Switch ($CultureCode)
 	{
 		'ca-'	{
-				If($xWordVersion -eq $wdWord2013)
+				If($xWordVersion -eq $wdWord2016)
+				{
+					$xArray = ("Austin", "En bandes", "Faceta", "Filigrana",
+					"Integral", "Ió (clar)", "Ió (fosc)", "Línia lateral",
+					"Moviment", "Quadrícula", "Retrospectiu", "Sector (clar)",
+					"Sector (fosc)", "Semàfor", "Visualització principal", "Whisp")
+				}
+				ElseIf($xWordVersion -eq $wdWord2013)
 				{
 					$xArray = ("Austin", "En bandes", "Faceta", "Filigrana",
 					"Integral", "Ió (clar)", "Ió (fosc)", "Línia lateral",
@@ -651,7 +659,14 @@ Function ValidateCoverPage
 			}
 
 		'da-'	{
-				If($xWordVersion -eq $wdWord2013)
+				If($xWordVersion -eq $wdWord2016)
+				{
+					$xArray = ("Austin", "BevægElse", "Brusen", "Facet", "Filigran", 
+					"Gitter", "Integral", "Ion (lys)", "Ion (mørk)", 
+					"Retro", "Semafor", "Sidelinje", "Stribet", 
+					"Udsnit (lys)", "Udsnit (mørk)", "Visningsmaster")
+				}
+				ElseIf($xWordVersion -eq $wdWord2013)
 				{
 					$xArray = ("BevægElse", "Brusen", "Ion (lys)", "Filigran",
 					"Retro", "Semafor", "Visningsmaster", "Integral",
@@ -668,7 +683,15 @@ Function ValidateCoverPage
 			}
 
 		'de-'	{
-				If($xWordVersion -eq $wdWord2013)
+				If($xWordVersion -eq $wdWord2016)
+				{
+					$xArray = ("Austin", "Bewegung", "Facette", "Filigran", 
+					"Gebändert", "Integral", "Ion (dunkel)", "Ion (hell)", 
+					"Pfiff", "Randlinie", "Raster", "Rückblick", 
+					"Segment (dunkel)", "Segment (hell)", "Semaphor", 
+					"ViewMaster")
+				}
+				ElseIf($xWordVersion -eq $wdWord2013)
 				{
 					$xArray = ("Semaphor", "Segment (hell)", "Ion (hell)",
 					"Raster", "Ion (dunkel)", "Filigran", "Rückblick", "Pfiff",
@@ -685,7 +708,7 @@ Function ValidateCoverPage
 			}
 
 		'en-'	{
-				If($xWordVersion -eq $wdWord2013)
+				If($xWordVersion -eq $wdWord2013 -or $xWordVersion -eq $wdWord2016)
 				{
 					$xArray = ("Austin", "Banded", "Facet", "Filigree", "Grid",
 					"Integral", "Ion (Dark)", "Ion (Light)", "Motion", "Retrospect",
@@ -701,7 +724,14 @@ Function ValidateCoverPage
 			}
 
 		'es-'	{
-				If($xWordVersion -eq $wdWord2013)
+				If($xWordVersion -eq $wdWord2016)
+				{
+					$xArray = ("Austin", "Con bandas", "Cortar (oscuro)", "Cuadrícula", 
+					"Whisp", "Faceta", "Filigrana", "Integral", "Ion (claro)", 
+					"Ion (oscuro)", "Línea lateral", "Movimiento", "Retrospectiva", 
+					"Semáforo", "Slice (luz)", "Vista principal", "Whisp")
+				}
+				ElseIf($xWordVersion -eq $wdWord2013)
 				{
 					$xArray = ("Whisp", "Vista principal", "Filigrana", "Austin",
 					"Slice (luz)", "Faceta", "Semáforo", "Retrospectiva", "Cuadrícula",
@@ -718,7 +748,14 @@ Function ValidateCoverPage
 			}
 
 		'fi-'	{
-				If($xWordVersion -eq $wdWord2013)
+				If($xWordVersion -eq $wdWord2016)
+				{
+					$xArray = ("Filigraani", "Integraali", "Ioni (tumma)",
+					"Ioni (vaalea)", "Opastin", "Pinta", "Retro", "Sektori (tumma)",
+					"Sektori (vaalea)", "Vaihtuvavärinen", "ViewMaster", "Austin",
+					"Kuiskaus", "Liike", "Ruudukko", "Sivussa")
+				}
+				ElseIf($xWordVersion -eq $wdWord2013)
 				{
 					$xArray = ("Filigraani", "Integraali", "Ioni (tumma)",
 					"Ioni (vaalea)", "Opastin", "Pinta", "Retro", "Sektori (tumma)",
@@ -735,24 +772,25 @@ Function ValidateCoverPage
 			}
 
 		'fr-'	{
-				If($xWordVersion -eq $wdWord2013)
+				If($xWordVersion -eq $wdWord2013 -or $xWordVersion -eq $wdWord2016)
 				{
-					$xArray = ("ViewMaster", "Secteur (foncé)", "Sémaphore",
-					"Rétrospective", "Ion (foncé)", "Ion (clair)", "Intégrale",
-					"Filigrane", "Facette", "Secteur (clair)", "À bandes", "Austin",
-					"Guide", "Whisp", "Lignes latérales", "Quadrillage")
+					$xArray = ("À bandes", "Austin", "Facette", "Filigrane", 
+					"Guide", "Intégrale", "Ion (clair)", "Ion (foncé)", 
+					"Lignes latérales", "Quadrillage", "Rétrospective", "Secteur (clair)", 
+					"Secteur (foncé)", "Sémaphore", "ViewMaster", "Whisp")
 				}
 				ElseIf($xWordVersion -eq $wdWord2010)
 				{
-					$xArray = ("Mosaïques", "Ligne latérale", "Annuel", "Perspective",
-					"Contraste", "Emplacements de bureau", "Moderne", "Blocs empilés",
-					"Rayures fines", "Austère", "Transcendant", "Classique", "Quadrillage",
-					"Exposition", "Alphabet", "Mots croisés", "Papier journal", "Austin", "Guide")
+					$xArray = ("Alphabet", "Annuel", "Austère", "Austin", 
+					"Blocs empilés", "Classique", "Contraste", "Emplacements de bureau", 
+					"Exposition", "Guide", "Ligne latérale", "Moderne", 
+					"Mosaïques", "Mots croisés", "Papier journal", "Perspective",
+					"Quadrillage", "Rayures fines", "Transcendant")
 				}
 			}
 
 		'nb-'	{
-				If($xWordVersion -eq $wdWord2013)
+				If($xWordVersion -eq $wdWord2013 -or $xWordVersion -eq $wdWord2016)
 				{
 					$xArray = ("Austin", "BevegElse", "Dempet", "Fasett", "Filigran",
 					"Integral", "Ion (lys)", "Ion (mørk)", "Retrospekt", "Rutenett",
@@ -769,7 +807,7 @@ Function ValidateCoverPage
 			}
 
 		'nl-'	{
-				If($xWordVersion -eq $wdWord2013)
+				If($xWordVersion -eq $wdWord2013 -or $xWordVersion -eq $wdWord2016)
 				{
 					$xArray = ("Austin", "Beweging", "Facet", "Filigraan", "Gestreept",
 					"Integraal", "Ion (donker)", "Ion (licht)", "Raster",
@@ -787,10 +825,10 @@ Function ValidateCoverPage
 			}
 
 		'pt-'	{
-				If($xWordVersion -eq $wdWord2013)
+				If($xWordVersion -eq $wdWord2013 -or $xWordVersion -eq $wdWord2016)
 				{
 					$xArray = ("Animação", "Austin", "Em Tiras", "Exibição Mestra",
-					"Faceta", "Fatia (Clara)", "Fatia (Escura)", "Filete", "Filigrana",
+					"Faceta", "Fatia (Clara)", "Fatia (Escura)", "Filete", "Filigrana", 
 					"Grade", "Integral", "Íon (Claro)", "Íon (Escuro)", "Linha Lateral",
 					"Retrospectiva", "Semáforo")
 				}
@@ -804,7 +842,7 @@ Function ValidateCoverPage
 			}
 
 		'sv-'	{
-				If($xWordVersion -eq $wdWord2013)
+				If($xWordVersion -eq $wdWord2013 -or $xWordVersion -eq $wdWord2016)
 				{
 					$xArray = ("Austin", "Band", "Fasett", "Filigran", "Integrerad", "Jon (ljust)",
 					"Jon (mörkt)", "Knippe", "Rutnät", "RörElse", "Sektor (ljus)", "Sektor (mörk)",
@@ -820,11 +858,12 @@ Function ValidateCoverPage
 			}
 
 		Default	{
-					If($xWordVersion -eq $wdWord2013)
+					If($xWordVersion -eq $wdWord2013 -or $xWordVersion -eq $wdWord2016)
 					{
-						$xArray = ("Austin", "Banded", "Facet", "Filigree", "Grid", "Integral",
-						"Ion (Dark)", "Ion (Light)", "Motion", "Retrospect", "Semaphore",
-						"Sideline", "Slice (Dark)", "Slice (Light)", "ViewMaster", "Whisp")
+						$xArray = ("Austin", "Banded", "Facet", "Filigree", "Grid",
+						"Integral", "Ion (Dark)", "Ion (Light)", "Motion", "Retrospect",
+						"Semaphore", "Sideline", "Slice (Dark)", "Slice (Light)", "ViewMaster",
+						"Whisp")
 					}
 					ElseIf($xWordVersion -eq $wdWord2010)
 					{
@@ -922,7 +961,6 @@ Function SetupWord
 	# Setup word for output
 	Write-Verbose "$(Get-Date): Create Word comObject."
 	$Script:Word = New-Object -comobject "Word.Application" -EA 0 4>$Null
-	
 	If(!$? -or $Script:Word -eq $Null)
 	{
 		Write-Warning "The Word object could not be created.  You may need to repair your Word installation."
@@ -954,7 +992,11 @@ Function SetupWord
 	SetWordHashTable $Script:WordCultureCode
 	
 	[int]$Script:WordVersion = [int]$Script:Word.Version
-	If($Script:WordVersion -eq $wdWord2013)
+	If($Script:WordVersion -eq $wdWord2016)
+	{
+		$Script:WordProduct = "Word 2016"
+	}
+	ElseIf($Script:WordVersion -eq $wdWord2013)
 	{
 		$Script:WordProduct = "Word 2013"
 	}
@@ -976,7 +1018,7 @@ Function SetupWord
 	}
 
 	#only validate CompanyName if the field is blank
-	If([String]::IsNullOrEmpty($Script:CoName))
+	If([String]::IsNullOrEmpty($CoName))
 	{
 		Write-Verbose "$(Get-Date): Company name is blank.  Retrieve company name from registry."
 		$TmpName = ValidateCompanyName
@@ -1043,7 +1085,7 @@ Function SetupWord
 			'fr-'	{
 					If($CoverPage -eq "Sideline")
 					{
-						If($Script:WordVersion -eq $wdWord2013)
+						If($Script:WordVersion -eq $wdWord2013 -or $Script:WordVersion -eq $wdWord2016)
 						{
 							$CoverPage = "Lignes latérales"
 							$CPChanged = $True
@@ -1097,7 +1139,6 @@ Function SetupWord
 
 	Write-Verbose "$(Get-Date): Validate cover page $($CoverPage) for culture code $($Script:WordCultureCode)"
 	[bool]$ValidCP = $False
-	
 	$ValidCP = ValidateCoverPage $Script:WordVersion $CoverPage $Script:WordCultureCode
 	
 	If(!$ValidCP)
@@ -1111,7 +1152,7 @@ Function SetupWord
 
 	ShowScriptOptions
 
-	$Script:Word.Visible = $False
+	$Script:Word.Visible = $true
 
 	#http://jdhitsolutions.com/blog/2012/05/san-diego-2012-powershell-deep-dive-slides-and-demos/
 	#using Jeff's Demo-WordReport.ps1 file for examples
@@ -1135,7 +1176,7 @@ Function SetupWord
 		}
 	}        
 
-	If($BuildingBlocks -ne $Null)
+	If($Null -ne $BuildingBlocks)
 	{
 		$BuildingBlocksExist = $True
 
@@ -1149,7 +1190,7 @@ Function SetupWord
 			$part = $Null
 		}
 
-		If($part -ne $Null)
+		If($Null -ne $part)
 		{
 			$Script:CoverPagesExist = $True
 		}
@@ -1280,7 +1321,7 @@ Function UpdateDocumentProperties
 			}
 			Else
 			{
-				[string]$abstract = "$($AbstractTitle) for $($Script:CoName)"
+				[string]$abstract = "$($AbstractTitle) for $Script:CoName"
 			}
 
 			$ab.Text = $abstract
@@ -2452,6 +2493,7 @@ Function Get-SiteCode
       $script:SiteCode = $_.SiteCode
     }
   }
+  write-host "Site Code Is: $sitecode"
   return $SiteCode
 }
 
@@ -2541,7 +2583,30 @@ function Load-ConfigMgrAssemblies()
   }
 }
 
-$SiteCode = Get-SiteCode
+function Get-CMWQLQuery {
+    Param (
+        $SiteCode,
+        $SMServer,
+        $WQLQuery
+    )
+    Get-WmiObject -Query $WQLQuery -Namespace "root\sms\site_$SiteCode" -ComputerName $SMServer | ForEach-Object { $_.get(); $_ }
+}
+
+Function Get-CMScheduleFunction {
+    Param (
+        $SiteCode,
+        $SMServer,
+        $ScheduleString
+    )
+    $ConnectionString = "\\$SMServer\root\sms\site_$SiteCode" + ":SMS_ScheduleMethods"
+    $WMIConnection = ([WMIClass]"$ConnectionString")
+    $Schedule = $WMIConnection.psbase.GetMethodParameters("ReadFromString")
+    $Schedule.StringData = $ScheduleString
+    $ScheduledToken = $WMIConnection.psbase.InvokeMethod("ReadFromString",$Schedule,$null)
+    $ScheduledToken.TokenData
+}
+
+$Script:SiteCode = Get-SiteCode
 
 Write-Verbose "$(Get-Date): Start writing report data"
 
@@ -2549,11 +2614,12 @@ $LocationBeforeExecution = Get-Location
 
 $Script:selection.InsertNewPage() | Out-Null
 
-#Import the CM12 Powershell cmdlets
+#Import the CM12 Powershell cmdlets - Removing dependency on PS Cmdlets
+<#
 if (-not (Test-Path -Path $SiteCode))
 {
   Write-Verbose "$(Get-Date):   CM12 module has not been imported yet, will import it now."
-  Import-Module ($env:SMS_ADMIN_UI_PATH.Substring(0,$env:SMS_ADMIN_UI_PATH.Length – 5) + '\ConfigurationManager.psd1') | Out-Null
+  #Import-Module ($env:SMS_ADMIN_UI_PATH.Substring(0,$env:SMS_ADMIN_UI_PATH.Length – 5) + '\ConfigurationManager.psd1') | Out-Null
 }
 #CM12 cmdlets need to be run from the CM12 drive
 Set-Location "$($SiteCode):" | Out-Null
@@ -2562,13 +2628,13 @@ if (-not (Get-PSDrive -Name $SiteCode))
   Write-Error "There was a problem loading the Configuration Manager powershell module and accessing the site's PSDrive."
   exit 1
 }
-
+#>
 #### Administration
 #### Site Configuration
 
 WriteWordLine 1 0 'Summary of all Sites in this Hierarchy'
 Write-Verbose "$(Get-Date):   Getting Site Information"
-$CMSites = Get-CMSite
+$CMSites = Get-CMWQLQuery -SiteCode $SiteCode -SMServer $SMSProvider -WQLQuery 'SELECT * FROM SMS_Site'
 
 $CAS                    = $CMSites | Where-Object {$_.Type -eq 4}
 $ChildPrimarySites      = $CMSites | Where-Object {$_.Type -eq 3}
@@ -2632,7 +2698,8 @@ if (-not [string]::IsNullOrEmpty($StandAlonePrimarySite))
 {
   Write-Verbose "$(Get-Date):   Enumerating a standalone Primary Site."
   WriteWordLine 0 1 'The following Primary Site is installed:'
-  $SiteCULevel = (Invoke-Command -ComputerName $(Get-CMSiteRole -RoleName 'SMS Site Server').NALPath.tostring().split('\\')[2] -ScriptBlock {Get-ItemProperty -Path registry::hklm\software\microsoft\sms\setup | Select-Object CULevel} -ErrorAction SilentlyContinue ).CULevel
+  $CMCULevelObject = Get-CMWQLQuery -SiteCode $SiteCode -SMServer $SMSProvider -WQLQuery 'SELECT * FROM SMS_SCI_SysResUse WHERE RoleName = "SMS Site Server"'
+  $SiteCULevel = (Invoke-Command -ComputerName $($CMCULevelObject).NALPath.tostring().split('\\')[2] -ScriptBlock {Get-ItemProperty -Path registry::hklm\software\microsoft\sms\setup | Select-Object CULevel} -ErrorAction SilentlyContinue ).CULevel
   $StandAlonePrimarySite = @{'Site Name' = $StandAlonePrimarySite.SiteName; 'Site Code' = $StandAlonePrimarySite.SiteCode; Version = $StandAlonePrimarySite.Version; 'CU Installed' = $SiteCULevel };
   
   $Table = AddWordTable -Hashtable $StandAlonePrimarySite -Format -155 -AutoFit $wdAutoFitFixed;
@@ -2685,8 +2752,10 @@ foreach ($CMSite in $CMSites)
   WriteWordLine 1 0 "Configuration Summary for Site $($CMSite.SiteCode)"
   WriteWordLine 0 0 ''   
  
-  $SiteRoleWordTable = @()  
-  $SiteRoles = Get-CMSiteRole -SiteCode $CMSite.SiteCode | Select-Object -Property NALPath, rolename
+  $SiteRoleWordTable = @()
+  $CMSiteSiteCode = $CMSite.SiteCode
+  $WQLQuery =  "SELECT * FROM SMS_SCI_SysResUse WHERE SiteCode = '$CMSiteSiteCode' AND NALPath LIKE '%MSWNET:[[]`"SMS[_]SITE=$CMSiteSiteCode`"]%'"
+  $SiteRoles = Get-CMWQLQuery -SiteCode $SiteCode -SMServer $SMSProvider -WQLQuery $WQLQuery | Select-Object -Property NALPath, rolename
 
   WriteWordLine 2 0 'Site Roles'
   WriteWordLine 0 1 'The following Site Roles are installed in this site:'
@@ -2706,7 +2775,8 @@ foreach ($CMSite in $CMSites)
   $Table = $Null
 
   $SiteMaintenanceTaskWordTable = @()
-  $SiteMaintenanceTasks = Get-CMSiteMaintenanceTask -SiteCode $CMSite.SiteCode
+  $WQLQuery = "SELECT * FROM SMS_SCI_SQLTask WHERE SiteCode = '$CMSiteSiteCode' AND FileType = 2"
+  $SiteMaintenanceTasks = Get-CMWQLQuery -SiteCode $SiteCode -SMServer $SMSProvider -WQLQuery $WQLQuery
   WriteWordLine 2 0 "Site Maintenance Tasks for Site $($CMSite.SiteCode)"
   
   foreach ($SiteMaintenanceTask in $SiteMaintenanceTasks) {
@@ -2728,8 +2798,8 @@ foreach ($CMSite in $CMSites)
   #>
   FindWordDocumentEnd
   $Table = $Null
-  
-  $CMManagementPoints = Get-CMManagementPoint -SiteCode $CMSite.SiteCode
+  $WQLQuery = "SELECT * FROM SMS_SCI_SysResUse WHERE SiteCode = '$CMSiteSiteCode' AND RoleName = 'SMS Management Point' AND FileType = 2 AND ItemType = 'System Resource Usage' AND NALPath LIKE '%MSWNET:[[]`"SMS[_]SITE=$CMSiteSiteCode`"]%'"
+  $CMManagementPoints = Get-CMWQLQuery -SiteCode $SiteCode -SMServer $SMSProvider -WQLQuery $WQLQuery
   WriteWordLine 2 1 "Summary of Management Points for Site $($CMSite.SiteCode)"
   foreach ($CMManagementPoint in $CMManagementPoints)
   {
@@ -2739,7 +2809,8 @@ foreach ($CMSite in $CMSites)
   }
   
   WriteWordLine 2 1 "Summary of Distribution Points for Site $($CMSite.SiteCode)"
-  $CMDistributionPoints = Get-CMDistributionPoint -SiteCode $CMSite.SiteCode
+  $WQLQuery = "SELECT * FROM SMS_SCI_SysResUse WHERE RoleName = 'SMS Distribution Point' AND FileType = 2 AND ItemType ='System Resource Usage' AND NALPath LIKE '%MSWNET:[[]`"SMS[_]SITE=$CMSiteSiteCode`"]%'"
+  $CMDistributionPoints = Get-CMWQLQuery -SiteCode $SiteCode -SMServer $SMSProvider -WQLQuery $WQLQuery
   
   foreach ($CMDistributionPoint in $CMDistributionPoints)
   {
@@ -2816,7 +2887,8 @@ foreach ($CMSite in $CMSites)
       WriteWordLine 0 1 'This Distribution Point is a member of the following DP Groups:'
       foreach ($DPGroupID in $DPGroupIDs)
       {
-        $DPGroupName = (Get-CMDistributionPointGroup -Id "$($DPGroupID)").Name
+        $WQLQuery = "SELECT * FROM SMS_DistributionPointGroup WHERE GroupID = '$DPGroupID'"
+        $DPGroupName = (Get-CMWQLQuery -SiteCode $SiteCode -SMServer $SMSProvider -WQLQuery $WQLQuery).Name
         WriteWordLine 0 2 "$($DPGroupName)"
       }
     }
@@ -2829,7 +2901,7 @@ foreach ($CMSite in $CMSites)
   Write-Verbose "$(Get-Date):   Enumerating all Software Update Points"
   WriteWordLine 2 1 "Summary of Software Update Point Servers for Site $($CMSite.SiteCode)"
   $CMSUPs = Get-WmiObject -Class sms_sci_sysresuse -Namespace root\sms\site_$($CMSite.SiteCode) -ComputerName $CMMPServerName | Where-Object {$_.rolename -eq 'SMS Software Update Point'}
-  #$CMSUPs = (Get-CMSoftwareUpdatePoint).Where({$_.SiteCode -eq "$($CMSite.SiteCode)"})
+  
   if (-not [string]::IsNullOrEmpty($CMSUPs))
   {
     foreach ($CMSUP in $CMSUPs) {
@@ -2870,7 +2942,7 @@ WriteWordLine 1 0 'Summary of Hierarchy Wide Configuration'
 Write-Verbose "$(Get-Date): Enumerating all Site Boundaries"
 WriteWordLine 2 0 'Summary of Site Boundaries'
 
-$Boundaries = Get-CMBoundary
+$Boundaries = Get-CMWQLQuery -SiteCode $SiteCode -SMServer $SMSProvider -WQLQuery "SELECT * FROM SMS_Boundary"
     if (-not [string]::IsNullOrEmpty($Boundaries))
 {
   $SubnetHashTable  = @();
@@ -3016,7 +3088,7 @@ WriteWordLine 0 0 ''
 #region enumerating all Boundary Groups and their members
 Write-Verbose "$(Get-Date):   Enumerating all Boundary Groups and their members"
 
-$BoundaryGroups = Get-CMBoundaryGroup
+$BoundaryGroups = Get-CMWQLQuery -SiteCode $SiteCode -SMServer $SMSProvider -WQLQuery "SELECT * FROM SMS_BoundaryGroup"
 WriteWordLine 2 0 'Summary of Site Boundary Groups'
 
 $BoundaryGroupHashTable = @();
@@ -3029,7 +3101,8 @@ if (-not [string]::IsNullOrEmpty($BoundaryGroups))
       $MemberIDs = (Get-WmiObject -Class SMS_BoundaryGroupMembers -Namespace root\sms\site_$SiteCode -ComputerName $SMSProvider | Where-Object -FilterScript {$_.GroupID -eq "$($BoundaryGroup.GroupID)"}).BoundaryID
       foreach ($MemberID in $MemberIDs)
       {
-        $MemberName = (Get-CMBoundary -Id $MemberID).DisplayName
+        $WQLQuery = "SELECT * FROM SMS_Boundary WHERE BoundaryID = '$MemberID'"
+        $MemberName = (Get-CMWQLQuery -SiteCode $SiteCode -SMServer $SMSProvider -WQLQuery $WQLQuery).DisplayName
         $MemberNames += "$MemberName (ID: $MemberID); "
         Write-Verbose "Member names: $($MemberName)"
       }
@@ -3062,7 +3135,8 @@ else
 Write-Verbose "$(Get-Date):   Enumerating all Client/Device Settings"
 WriteWordLine 2 0 'Summary of Custom Client Device Settings'
 
-$AllClientSettings = Get-CMClientSetting | Where-Object -FilterScript {$_.SettingsID -ne '0'}
+$WQLObject = Get-CMWQLQuery -SMServer $SMSProvider -SiteCode $SiteCode -WQLQuery "SELECT * FROM SMS_ClientSettings"
+$AllClientSettings = $WQLObject | Where-Object -FilterScript {$_.SettingsID -ne '0'}
 foreach ($ClientSetting in $AllClientSettings)
 {
   WriteWordLine 0 1 "Client Settings Name: $($ClientSetting.Name)" -bold
@@ -3097,7 +3171,7 @@ foreach ($ClientSetting in $AllClientSettings)
           WriteWordLine 0 2 'Software Inventory'
           WriteWordLine 0 2 "Enable software inventory on clients: $($AgentConfig.Enabled)"
           WriteWordLine 0 2 'Schedule software inventory and file collection: ' -nonewline
-          $Schedule = Convert-CMSchedule -ScheduleString $AgentConfig.Schedule
+          $Schedule = Get-CMScheduleFunction -SiteCode $SiteCode -SMServer $SMSProvider -ScheduleString $AgentConfig.Schedule
           if ($Schedule.DaySpan -gt 0)
           {
             WriteWordLine 0 0 " Occurs every $($Schedule.DaySpan) days effective $($Schedule.StartTime)"
@@ -3289,7 +3363,7 @@ foreach ($ClientSetting in $AllClientSettings)
           WriteWordLine 0 2 "Use UTC (Universal Time Coordinated) for evaluation time: $($AgentConfig.EffectiveTimeinUTC)"
           WriteWordLine 0 2 "Require a new scan for each evaluation: $($AgentConfig.ForceScan)"
           WriteWordLine 0 2 'NAP re-evaluation schedule:' -nonewline
-          $Schedule = Convert-CMSchedule -ScheduleString $AgentConfig.ComputeComplianceSchedule
+          $Schedule = Get-CMScheduleFunction -SiteCode $SiteCode -SMServer $SMSProvider -ScheduleString $AgentConfig.ComputeComplianceSchedule
           if ($Schedule.DaySpan -gt 0)
           {
             WriteWordLine 0 0 " Occurs every $($Schedule.DaySpan) days effective $($Schedule.StartTime)"
@@ -3336,7 +3410,7 @@ foreach ($ClientSetting in $AllClientSettings)
           WriteWordLine 0 2 'Software Metering'
           WriteWordLine 0 2 "Enable software metering on clients: $($AgentConfig.Enabled)"
           WriteWordLine 0 2 'Schedule data collection: ' -nonewline
-          $Schedule = Convert-CMSchedule -ScheduleString $AgentConfig.DataCollectionSchedule
+          $Schedule = Get-CMScheduleFunction -SiteCode $SiteCode -SMServer $SMSProvider -ScheduleString $AgentConfig.DataCollectionSchedule
           if ($Schedule.DaySpan -gt 0)
           {
             WriteWordLine 0 0 " Occurs every $($Schedule.DaySpan) days effective $($Schedule.StartTime)"
@@ -3384,7 +3458,7 @@ foreach ($ClientSetting in $AllClientSettings)
           WriteWordLine 0 2 'Software Updates'
           WriteWordLine 0 2 "Enable software updates on clients: $($AgentConfig.Enabled)"
           WriteWordLine 0 2 'Software Update scan schedule: ' -nonewline
-          $Schedule = Convert-CMSchedule -ScheduleString $AgentConfig.ScanSchedule
+          $Schedule = Get-CMScheduleFunction -SiteCode $SiteCode -SMServer $SMSProvider -ScheduleString $AgentConfig.ScanSchedule
           if ($Schedule.DaySpan -gt 0)
           {
             WriteWordLine 0 0 " Occurs every $($Schedule.DaySpan) days effective $($Schedule.StartTime)"
@@ -3425,7 +3499,7 @@ foreach ($ClientSetting in $AllClientSettings)
             }
           }
           WriteWordLine 0 2 'Schedule deployment re-evaluation: ' -nonewline
-          $Schedule = Convert-CMSchedule -ScheduleString $AgentConfig.EvaluationSchedule
+          $Schedule = Get-CMScheduleFunction -SiteCode $SiteCode -SMServer $SMSProvider -ScheduleString $AgentConfig.EvaluationSchedule
           if ($Schedule.DaySpan -gt 0)
           {
             WriteWordLine 0 0 " Occurs every $($Schedule.DaySpan) days effective $($Schedule.StartTime)"
@@ -3546,7 +3620,7 @@ foreach ($ClientSetting in $AllClientSettings)
         {
           WriteWordLine 0 2 'Hardware Inventory'
           WriteWordLine 0 2 "Enable hardware inventory on clients: $($AgentConfig.Enabled)"
-          $Schedule = Convert-CMSchedule -ScheduleString $AgentConfig.Schedule
+          $Schedule = Get-CMScheduleFunction -SiteCode $SiteCode -SMServer $SMSProvider -ScheduleString $AgentConfig.Schedule
           if ($Schedule.DaySpan -gt 0)
           {
             WriteWordLine 0 2 "Hardware inventory schedule: Occurs every $($Schedule.DaySpan) days effective $($Schedule.StartTime)"
@@ -3599,7 +3673,7 @@ foreach ($ClientSetting in $AllClientSettings)
         17
         {
           WriteWordLine 0 2 'Software Deployment'
-          $Schedule = Convert-CMSchedule -ScheduleString $AgentConfig.EvaluationSchedule
+          $Schedule = Get-CMScheduleFunction -SiteCode $SiteCode -SMServer $SMSProvider -ScheduleString $AgentConfig.EvaluationSchedule
           if ($Schedule.DaySpan -gt 0)
           {
             WriteWordLine 0 2 "Schedule re-evaluation for deployments: Occurs every $($Schedule.DaySpan) days effective $($Schedule.StartTime)"
@@ -3725,7 +3799,7 @@ foreach ($ClientSetting in $AllClientSettings)
 
 Write-Verbose "$(Get-Date):   Collecting all administrative users"
 WriteWordLine 2 0 'Administrative Users'
-$Admins = Get-CMAdministrativeUser
+$Admins = Get-CMWQLQuery -SiteCode $SiteCode -SMServer $SMSProvider -WQLQuery 'SELECT * FROM SMS_Admin'
 
 WriteWordLine 0 1 'Enumerating administrative users:'
 
@@ -3758,7 +3832,8 @@ $Table = $Null
 #region enumerating all custom Security roles
 Write-Verbose "$(Get-Date):   enumerating all custom build security roles"
 WriteWordLine 2 0 'Custom Security Roles'
-$SecurityRoles = Get-CMSecurityRole | Where-Object -FilterScript {-not $_.IsBuiltIn}
+$SecurityRoleObject = Get-CMWQLQuery -SiteCode $SiteCode -SMServer $SMSProvider -WQLQuery 'SELECT * FROM SMS_Role'
+$SecurityRoles = $SecurityRoleObject | Where-Object -FilterScript {-not $_.IsBuiltIn}
 if (-not [string]::IsNullOrEmpty($SecurityRoles))
 {
   $SRHashArray = @();
@@ -3769,9 +3844,12 @@ if (-not [string]::IsNullOrEmpty($SecurityRoles))
   {
     if ($SecurityRole.NumberOfAdmins -gt 0)
     {
-      $Members = $(Get-CMAdministrativeUser | Where-Object -FilterScript {$_.Roles -ilike "$($SecurityRole.RoleID)"}).LogonName
+      $CMAdminUsers = Get-CMWQLQuery -SiteCode $SiteCode -SMServer $SMSProvider -WQLQuery 'SELECT * FROM SMS_Admin'
+      $Members = $($CMAdminUsers | Where-Object -FilterScript {$_.Roles -ilike "$($SecurityRole.RoleID)"}).LogonName
     }
-    $SRRow = @{Name = $SecurityRole.RoleName; Description = $SecurityRole.RoleDescription; 'Copied From' = $((Get-CMSecurityRole -Id $SecurityRole.CopiedFromID).RoleName); Members = "$Members"; 'Role ID' = $SecurityRole.RoleID;}
+    $CopyID = $SecurityRole.CopiedFromID
+    $WQLObject = Get-CMWQLQuery -SiteCode $SiteCode -SMServer $SMSProvider -WQLQuery "SELECT * FROM SMS_Role WHERE RoleID = '$CopyID'"
+    $SRRow = @{Name = $SecurityRole.RoleName; Description = $SecurityRole.RoleDescription; 'Copied From' = $(($WQLObject).RoleName); Members = "$Members"; 'Role ID' = $SecurityRole.RoleID;}
     $SRHashArray += $SRRow;
   }
   
@@ -3795,7 +3873,7 @@ else
 
 Write-Verbose "$(Get-Date):   Enumerating all used accounts"
 WriteWordLine 2 0 'Configured Accounts'
-$Accounts = Get-CMAccount
+$Accounts = Get-CMWQLQuery -SiteCode $SiteCode -SMServer $SMSProvider -WQLQuery 'SELECT * FROM SMS_SCI_Reserved'
 WriteWordLine 0 1 'Enumerating all accounts used for specific tasks.'
 
 $AccountsHashArray = @();
@@ -3824,7 +3902,7 @@ WriteWordLine 1 0 'Assets and Compliance'
 
 #region enumerating all User Collections
 WriteWordLine 2 0 'Summary of User Collections'
-$UserCollections = Get-CMUserCollection
+$UserCollections = Get-CMWQLQuery -SiteCode $SiteCode -SMServer $SMSProvider -WQLQuery 'SELECT * FROM SMS_Collection WHERE CollectionType = 1'
 if ($ListAllInformation)
 {
   $UserCollHashArray = @();
@@ -3853,7 +3931,7 @@ else
 
 #region enumerating all Device Collections
 WriteWordLine 2 0 'Summary of Device Collections'
-$DeviceCollections = Get-CMDeviceCollection
+$DeviceCollections = Get-CMWQLQuery -SiteCode $SiteCode -SMServer $SMSProvider -WQLQuery 'SELECT * FROM SMS_Collection WHERE CollectionType = 2'
 if ($ListAllInformation)
 {
   foreach ($DeviceCollection in $DeviceCollections)
@@ -3946,7 +4024,10 @@ if ($ListAllInformation)
                 }
         }
         try {
-            $CollVars = Get-CMDeviceCollectionVariable -CollectionId $DeviceCollection.CollectionID
+            $ColID = $DeviceCollection.CollectionID
+            $WQLObject = Get-CMWQLQuery -SiteCode $SiteCode -SMServer $SMSProvider -WQLQuery "SELECT * FROM SMS_CollectionSettings WHERE CollectionID = '$ColID'"
+
+            $CollVars = $WQLObject.CollectionVariables
             if ($CollVars) {
                 $CollVarsHashArray = @();
 
@@ -4076,7 +4157,7 @@ else {
     WriteWordLine 0 0 ''
     WriteWordLine 3 0 'Configuration Items'
 
-    $CIs = Get-CMConfigurationItem
+    $CIs = Get-CMWQLQuery -SiteCode $SiteCode -SMServer $SMSProvider -WQLQuery 'SELECT * FROM SMS_ConfigurationItemLatest WHERE CIType_ID IN ( 3, 4, 5 ) AND IsHidden = 0 AND IsExpired = 0'
     WriteWordLine 0 1 'Enumerating Configuration Items:'
 
   $CIsHashArray = @();
@@ -4097,7 +4178,7 @@ else {
     WriteWordLine 0 0 ''
 
     WriteWordLine 3 0 'Configuration Baselines'
-    $CBs = Get-CMBaseline
+    $CBs = Get-CMWQLQuery -SiteCode $SiteCode -SMServer $SMSProvider -WQLQuery 'SELECT * FROM SMS_ConfigurationBaselineInfo'
 
     if ($CBs) {
 
@@ -4126,7 +4207,7 @@ else {
     ### User Data and Profiles
     Write-Verbose "$(Get-Date):   Working on User Data and Profiles"
     WriteWordLine 3 0 'User Data and Profiles'
-    $UserDataProfiles = Get-CMUserDataAndProfileConfigurationItem
+    $UserDataProfiles = Get-CMWQLQuery -SiteCode $SiteCode -SMServer $SMSProvider -WQLQuery 'SELECT * FROM SMS_ConfigurationPolicy'
 
     if (-not [string]::IsNullOrEmpty($UserDataProfiles)) {
       $UserDataProfilesHashArray = @();
@@ -4151,10 +4232,13 @@ else {
 
         Write-Verbose "$(Get-Date):   Working on Endpoint Protection"
         WriteWordLine 2 0 'Endpoint Protection'
-        if (-not ($(Get-CMEndpointProtectionPoint) -eq $Null))
+        $WQLQuery = "SELECT * FROM SMS_SCI_SysResUse WHERE RoleName = 'SMS Endpoint Protection Point' AND FileType = 2 AND ItemType = 'SystemResource Usage' AND NALPath LIKE '%MSWNET:[[]`"SMS[_]SITE=$SiteCode`"]%'"
+        if (-not ($(Get-CMWQLQuery -SiteCode $SiteCode -SMServer $SMSProvider -WQLQuery $WQLQuery) -eq $Null))
             {
                 WriteWordLine 3 0 'Antimalware Policies'
-                $AntiMalwarePolicies = Get-CMAntimalwarePolicy
+                $AntiMalwarePolicies = @()
+                $AntiMalwarePolicies += @(Get-CMWQLQuery -SiteCode $SiteCode -SMServer $SMSProvider -WQLQuery 'SELECT * FROM SMS_AntimalwareSettingsDefault')
+                $AntiMalwarePolicies += @(Get-CMWQLQuery -SiteCode $SiteCode -SMServer $SMSProvider -WQLQuery 'SELECT * FROM SMS_AntiMalwareSettings')
                 if (-not [string]::IsNullOrEmpty($AntiMalwarePolicies))
                     {
                         foreach ($AntiMalwarePolicy in $AntiMalwarePolicies)
@@ -4480,7 +4564,7 @@ else {
         Write-Verbose "$(Get-Date):   Working on Windows Firewall Policies"
         WriteWordLine 3 0 'Windows Firewall Policies'
 
-        $FirewallPolicies = Get-CMWindowsFirewallPolicy
+        $FirewallPolicies = Get-CMWQLQuery -SiteCode $SiteCode -SMServer $SMSProvider -WQLQuery 'SELECT * FROM SMS_ConfigurationPolicy'
         if (-not [string]::IsNullOrEmpty($FirewallPolicies)) {
 
           $FirewallPolsHashArray = @()
@@ -4543,7 +4627,9 @@ if ($Software)
                         WriteWordLine 0 2 "$($App.LocalizedDisplayName)" -boldface $true
                         WriteWordLine 0 3 "Created by: $($App.CreatedBy)"
                         WriteWordLine 0 3 "Date created: $($App.DateCreated)"
-                        $DTs = Get-CMDeploymentType -ApplicationName $App.LocalizedDisplayName
+                        $AppModelName = $App.ModelName
+                        $AppModelName = $AppModelName.Replace('/','_')
+                        $DTs = Get-CMWQLQuery -SiteCode $SiteCode -SMServer $SMSProvider -WQLQuery "Select * From SMS_DeploymentType where AppModelName like '$AppModelName'"
                         if (-not [string]::IsNullOrEmpty($DTs)) {
                             $DTsHashArray = @()
   
@@ -4580,7 +4666,7 @@ if ($Software)
         
         WriteWordLine 2 0 'Packages'
         WriteWordLine 0 0 ''
-        $Packages = Get-CMPackage
+        $Packages = Get-CMWQLQuery -SiteCode $SiteCode -SMServer $SMSProvider -WQLQuery 'SELECT * FROM SMS_Package WHERE PackageType = 0 AND ActionInProgress <> 3'
         if ($ListAllInformation)
             {
                 if (-not [string]::IsNullOrEmpty($Packages))
@@ -4720,7 +4806,7 @@ if ($Software)
 
     WriteWordLine 2 0 'Driver Packages'
     WriteWordLine 0 0 ''
-    $DriverPackages = Get-CMDriverPackage
+    $DriverPackages = Get-CMWQLQuery -SiteCode $SiteCode -SMServer $SMSProvider -WQLQuery 'SELECT * FROM SMS_DriverPackage'
     if ($ListAllInformation)
         {
             if (-not [string]::IsNullOrEmpty($DriverPackages))
@@ -4737,7 +4823,8 @@ if ($Software)
                                 WriteWordLine 0 2 "PackageID: $($DriverPackage.PackageID)"
                                 WriteWordLine 0 2 "Source path: $($DriverPackage.PkgSourcePath)"
                                 WriteWordLine 0 2 'This package consists of the following Drivers:'
-                                $Drivers = Get-CMDriver -DriverPackageId "$($DriverPackage.PackageID)"
+                                $DriverPackageID = $DriverPackage.PackageID
+                                $Drivers = Get-CMWQLQuery -SiteCode $SiteCode -SMServer $SMSProvider -WQLQuery "SELECT * FROM SMS_Driver WHERE CI_ID IN (SELECT CTC.CI_ID FROM SMS_CIToContent AS CTC JOIN SMS_PackageToContent AS PTC ON CTC.ContentID = PTC.ContentID JOIN SMS_DriverPackage AS Pkg ON PTC.PackageID = Pkg.PackageID WHERE Pkg.PackageID='$DriverPackageID') ORDER BY LocalizedDisplayName"
                                 foreach ($Driver in $Drivers)
                                     {
                                         WriteWordLine 0 0 ''
@@ -4769,7 +4856,7 @@ if ($Software)
 
     WriteWordLine 2 0 'Operating System Installers'
     WriteWordLine 0 0 ''
-    $OSInstallers = Get-CMOperatingSystemInstaller
+    $OSInstallers = Get-CMWQLQuery -SiteCode $SiteCode -SMServer $SMSProvider -WQLQuery "SELECT * FROM SMS_OperatingSystemInstallPackage"
     if (-not [string]::IsNullOrEmpty($OSImages))
         {
             WriteWordLine 0 1 'The following OS Installers are imported into this environment:'
@@ -4795,7 +4882,7 @@ if ($Software)
     
 WriteWordLine 2 0 'Boot Images'
 WriteWordLine 0 0 ''
-$BootImages = Get-CMBootImage
+$BootImages = Get-CMWQLQuery -SiteCode $SiteCode -SMServer $SMSProvider -WQLQuery "SELECT * FROM SMS_BootImagePackage"
 if (-not [string]::IsNullOrEmpty($BootImages))
     {
         WriteWordLine 0 1 'The following Boot Images are imported into this environment:'
@@ -4830,7 +4917,7 @@ if (-not [string]::IsNullOrEmpty($BootImages))
                         $ImportedDriverIDs = ($BootImage.ReferencedDrivers).ID | Out-Null
                         foreach ($ImportedDriverID in $ImportedDriverIDs)
                             {
-                                $ImportedDriver = Get-CMDriver -ID $ImportedDriverID
+                                $ImportedDriver = Get-CMWQLQuery -SiteCode $SiteCode -SMServer $SMSProvider -WQLQuery "SELECT * FROM SMS_Driver WHERE CI_ID = '$ImportedDriverID'"
                                 WriteWordLine 0 3 "Name: $($ImportedDriver.LocalizedDisplayName)" -boldface $true
                                 WriteWordLine 0 3 "Inf File: $($ImportedDriver.DriverINFFile)"
                                 WriteWordLine 0 3 "Driver Class: $($ImportedDriver.DriverClass)"
@@ -4895,7 +4982,7 @@ Write-Verbose "$(Get-Date):   Enumerating Task Sequences"
 WriteWordLine 2 0 'Task Sequences'
 WriteWordLine 0 0 ''
 
-$TaskSequences = Get-CMTaskSequence
+$TaskSequences = Get-CMWQLQuery -SiteCode $SiteCode -SMServer $SMSProvider -WQLQuery "SELECT * FROM SMS_TaskSequencePackage"
 Write-Verbose "$(Get-Date):   working on $($TaskSequences.count) Task Sequences"
 if ($ListAllInformation)
     {
@@ -4907,7 +4994,8 @@ if ($ListAllInformation)
                         WriteWordLine 0 1 "Package ID: $($TaskSequence.PackageID)"
                         if ($TaskSequence.BootImageID)
                             {
-                                WriteWordLine 0 2 "Boot Image referenced in this Task Sequence: $((Get-CMBootImage -Id $TaskSequence.BootImageID -ErrorAction SilentlyContinue ).Name)"
+                                $TSBootImageID = $TaskSequence.BootImageID
+                                WriteWordLine 0 2 "Boot Image referenced in this Task Sequence: $((Get-CMWQLQuery -SiteCode $SiteCode -SMServer $SMSProvider -WQLQuery "SELECT * FROM SMS_BootImagePackage WHERE PackageID = 'TSBootImageID'" ).Name)"
                             }
         
                         $Sequence = $Null
